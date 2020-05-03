@@ -2,21 +2,19 @@
 This is the list of the various features to this platform
 
 ## User
-- [ ] Register & Login
-- [ ] Upload passport pic
-- [ ] Course Registration
-- [ ] view Results
-- [ ] Pay fees
+- [x] Register & Login
+- [x] Upload passport pic
+- [x] Course Registration
+- [x] view Results
+- [x] fees
 - [ ] Receipt for fees
 
 ## Staff
-- [ ] Add Programs
-- [ ] Add Courses
-- [ ] Add Lecturers
-- [ ] Assign lecturers to Courses
-- [ ] Assign Courses to Programs
+- [x] Add Programs
+- [x] Add Courses
+- [x] Add Lecturers
+- [x] Assign lecturers to Courses
+- [x] Assign Courses to Programs
 
 ## Lecturer
-- [ ] Enter Student Scores
-- [ ] See Student Performance
-- [ ] See class performance
+- [x] Enter Student Scores

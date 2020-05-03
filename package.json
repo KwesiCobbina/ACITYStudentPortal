@@ -1,21 +1,30 @@
 {
-  "name": "ACITYStudentPortal",
+  "name": "acityportal",
   "version": "1.0.0",
   "description": "A students portal",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": "https://github.com/doc-han/ACITYStudentPortal.git",
   "author": "doc-han <yahyafarhan48@gmail.com>",
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "bcrypt": "^4.0.0",
     "body-parser": "^1.19.0",
+    "cloudinary": "^1.20.0",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.4",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "mongoose": "^5.8.9",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "node-xlsx": "^0.15.0",
+    "randomstring": "^1.1.5"
   }
 }

@@ -1,0 +1,10 @@
+.marketing h2 {
+    font-family: monospace;
+    font-size: 14px;
+}
+.marketing a {
+    color: #343434;
+}
+.marketing img {
+    border-radius: none!important;
+}

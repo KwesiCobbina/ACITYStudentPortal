@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Carousel Template for Bootstrap</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <!-- Custom styles for this template -->
+  <!-- <link href="/css/carousel.css" rel="stylesheet"> -->
+</head>
+
+<body>
+
+  <%- include('header.ejs') %>
+
+  <main role="main">
+
+
+    <div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+      <div>
+        <h3>Results</h3>
+      </div>
+      <div class="row mt-5">
+
+
+        <div class="col-lg-12">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Course</th>
+                <th scope="col">Midsem score (30%)</th>
+                <th scope="col">Exam score (70%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% results.forEach(i=>{ %>
+                <tr>
+                  <td><%= i.course %></td>
+                  <td><%= i.midsem %></td>
+                  <td><%= i.endsem %></td>
+                </tr>
+              <% }) %>
+              <% unmarked.forEach(i=>{ %>
+                <tr>
+                  <td><%= i %></td>
+                  <td colspan="2">Not scored</td>
+                </tr>
+              <% }) %>
+              
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div><!-- /.container -->
+
+
+    <!-- FOOTER -->
+    <footer class="container">
+      <p class="float-right"><a href="#">Back to top</a></p>
+      <p>&copy; Acity Portal 2020-2021 &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+  </main>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="/js/vendor/jquery-slim.min.js"><\/script>')</script>
+  <script src="/js/vendor/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+  <script src="/js/vendor/holder.min.js"></script>
+
+</body>
+
+</html>

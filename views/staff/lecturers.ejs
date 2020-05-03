@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Carousel Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+	<link href="/css/carousel.css" rel="stylesheet">
+	<link rel="stylesheet" href="/css/floating.css">
+	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  </head>
+  <body>
+
+    <%- include('header.ejs') %>
+
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+	  
+		  <!-- Modal content-->
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h4 class="modal-title">Upload XLS file</h4>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			  
+			</div>
+			<div class="modal-body">
+			  <form action="/staff/lecturerxls" method="POST" enctype="multipart/form-data">
+				<input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="btn btn-dark form-control mb-1" name="xls"  id="studentxls">
+				<button type="submit" class="btn btn-primary form-control" id="uploadstudentxls">Upload</button>
+			  </form>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		  </div>
+	  
+		</div>
+	  </div>
+
+    <main role="main">
+
+      <div class="container marketing">
+
+				<!-- Three columns of text below the carousel -->
+        <div class="row mt-5">
+					<div class="col-lg-5">
+						<form method="POST" enctype="multipart/form-data" action="/staff/lecturers">
+						<h3>Add new Lecturer</h3>
+						<div class="form-group">
+								<label for="exampleFormControlInput1">First name</label>
+								<input type="text" name="firstname" class="form-control" id="exampleFormControlInput1" placeholder="">
+						</div>
+						<div class="form-group">
+								<label for="exampleFormControlInput1">Surname</label>
+								<input type="text" name="surname" class="form-control" id="exampleFormControlInput1" placeholder="">
+						</div>
+						<div class="form-group">
+								<label for="exampleFormControlInput1">LecturerID</label>
+								<input type="text" name="lecturerID" value="<%=pd.id%>" class="form-control" id="exampleFormControlInput1" placeholder="" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Email</label>
+                            <input type="text" name="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Mobile</label>
+                            <input type="text" name="mobile" class="form-control" id="exampleFormControlInput1" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Password</label>
+                            <input type="text" name="password" value="<%=pd.pass%>" class="form-control" id="exampleFormControlInput1" placeholder="" readonly>
+                        </div>
+                        <div class="form-group">
+                          <label for="">Passport pic</label>
+                          <input type="file" name="pic" id="" class="form-control">
+                        </div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary form-control">Add</button>
+						</div>
+					</form>
+					</div>
+					<div class="col-lg-7">
+						<h3>Available Programs</h3>
+						<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col">#</th>
+										<th scope="col">Name</th>
+										<th scope="col">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% data.forEach((i,index)=>{ %>
+										<tr>
+												<th scope="row"><%= index+1 %></th>
+												<td><%= i.firstname+" "+i.surname %></td>
+												<!-- <td><%= i.years %></td> -->
+												<td><a href="/lecturerviewer/<%=i.lecturerID%>" class="btn btn-primary">Details</button></a>
+										</tr>
+									<% }) %>
+								</tbody>
+							</table>
+					</div>
+        </div>
+		
+		<!-- floating action button -->
+
+        <a href="#" class="float" data-toggle="modal" data-target="#myModal" role="button">
+			<i class="fa fa-file my-float"></i>
+		</a>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="/js/vendor/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="/js/vendor/holder.min.js"></script>
+  </body>
+</html>
