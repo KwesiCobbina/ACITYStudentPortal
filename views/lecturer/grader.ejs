@@ -1,25 +1,27 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Carousel Template for Bootstrap</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <title>Grader | Lecturer</title>
 
-    <!-- Custom styles for this template -->
-  </head>
-  <body>
+  <!-- Bootstrap core CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
 
-    <%- include('header.ejs') %>
+  <!-- Custom styles for this template -->
+</head>
 
-    <main role="main">
+<body>
 
-      <!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <%- include('header.ejs') %>
+
+  <main role="main">
+
+    <!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
           <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -68,42 +70,49 @@
       </div> -->
 
 
-      <!-- Marketing messaging and featurettes
+    <!-- Marketing messaging and featurettes
       ================================================== -->
-      <!-- Wrap the rest of the page in another container to center all the content. -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
 
-      <div class="container marketing">
-        
-          <div class="row mt-5">
-              <div class="container-fluid mt-5" style="display: flex">
+    <div class="container marketing">
+
+      <div class="row mt-5">
+        <div class="container-fluid mt-5" style="display: flex">
+
+          <%if(data){%>
+          <table class="table table-striped table-dark">
+            <thead>
+              <tr>
+                <th>#</td>
+                <th>Name</th>
+                <th>studentID</th>
+                <th>Assesment(30%)</th>
+                <th>Final Exam(70%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <form action>
+                <input type="text" style="display: none" name="courseID" value="<%=courseID%>">
+                <input type="text" style="display: none;" name="year" value="<%=data[0].year%>">
+                <% data.forEach((i,e)=>{ %>
+                <tr>
+                  <td><%=e+1%></td>
+                  <td><%=i.studentID.firstname+" "+i.studentID.surname%></td>
+                  <td><%=i.studentID.studentID%></td>
+                  <td><input name="<%=i.studentID.studentID%>_mid" class="form-control text-center"
+                      value="<%=i.midsem%>" type="number"></td>
+                  <td><input name="<%=i.studentID.studentID%>_end" class="form-control text-center"
+                      value="<%=i.endsem%>" type="number"></td>
+                </tr>
+                <% }) %>
+              </form>
+            </tbody>
+
+          </table>
+          <%}else{%>
+          <h3>No Student Has registered to this course yet</h3>
+          <%}%>
                 
-                <table class="table table-striped table-dark">
-                    <thead>
-                        <tr>
-                        <th>#</td>
-                        <th>Name</th>
-                        <th>studentID</th>
-                        <th>Assesment(30%)</th>
-                        <th>Final Exam(70%)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      <form action>
-                        <input type="text" style="display: none" name="courseID" value="<%=courseID%>">
-                        <input type="text" style="display: none;" name="year" value="<%=data[0].year%>">
-                        <% data.forEach((i,e)=>{ %>
-                        <tr>
-                                <td><%=e+1%></td>
-                                <td><%=i.studentID.firstname+" "+i.studentID.surname%></td>
-                                <td><%=i.studentID.studentID%></td>
-                                <td><input name="<%=i.studentID.studentID%>_mid" class="form-control text-center"  value="<%=i.midsem%>" type="number"></td>
-                                <td><input name="<%=i.studentID.studentID%>_end" class="form-control text-center"  value="<%=i.endsem%>" type="number"></td>
-                        </tr>
-                        <% }) %>
-                      </form>
-                    </tbody>
-                    
-                </table>
                 
                   
                 
@@ -113,119 +122,73 @@
 
           </div>
           <div class="text-center">
-            <buttton class="btn btn-secondary save-grades">Save</buttton>
-          </div>
+            <% if(data){%>
+          <buttton class="btn btn-secondary save-grades">Save</buttton>
+          <% }%>
 
-				<!-- Three columns of text below the carousel -->
-
-
-        <!-- START THE FEATURETTES -->
-
-        <!-- <hr class="featurette-divider">
-
-        <div class="row featurette">
-          <div class="col-md-7">
-            <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-          </div>
-          <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-          </div>
         </div>
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-          <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-          </div>
-          <div class="col-md-5 order-md-1">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-          </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-          <div class="col-md-7">
-            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-          </div>
-          <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-          </div>
-        </div>
-
-        <hr class="featurette-divider"> -->
-
-        <!-- /END THE FEATURETTES -->
 
       </div><!-- /.container -->
 
 
-      <!-- FOOTER -->
-      <footer class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; Acity Portal 2020-2021 &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
-    </main>
+  </main>
 
-    <!-- Bootstrap core JavaScript
+  <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="/js/vendor/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="/js/vendor/holder.min.js"></script>
-    <script>
-      let ress = `<div class="alert alert-success"><b>Grading scores updated!</b></div>`;
-      function msg(msg){
-        return ` <div class="alert alert-danger"><b>${msg}!</b></div>`;
-      }
-      function callError(msgg){
-        $(".resdiv").append(msg(msgg));
-              setTimeout(function(){
-                $(".resdiv").html("");
-              },5000);
-      }
-      $(".save-grades").click(function(){
-        let formdata = $("form").serializeArray();
-        let data = {data: JSON.stringify(formdata)};
-        let cango = true;
-        console.log(formdata)
-        for(let i=0;i<formdata.length;i++){
-          if(formdata[i].name.split("_")[1] == "mid" && (formdata[i].value<0 || formdata[i].value>30)){
-            callError("All mid semester values should be less than 30")
-            cango = false;
-            break;
-          }else if(formdata[i].name.split("_")[1] == "end" && (formdata[i].value<0 || formdata[i].value>70)){
-            callError("All end of semester values should be less than 70")
-            cango = false;
-            break;
-          }
-        };
-        if(cango){
-          $.ajax({
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="/js/vendor/jquery-slim.min.js"><\/script>')</script>
+  <script src="/js/vendor/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+  <script src="/js/vendor/holder.min.js"></script>
+  <script>
+    let ress = `<div class="alert alert-success"><b>Grading scores updated!</b></div>`;
+    function msg(msg) {
+      return ` <div class="alert alert-danger"><b>${msg}!</b></div>`;
+    }
+    function callError(msgg) {
+      $(".resdiv").append(msg(msgg));
+      setTimeout(function () {
+        $(".resdiv").html("");
+      }, 5000);
+    }
+    $(".save-grades").click(function () {
+      let formdata = $("form").serializeArray();
+      let data = { data: JSON.stringify(formdata) };
+      let cango = true;
+      console.log(formdata)
+      for (let i = 0; i < formdata.length; i++) {
+        if (formdata[i].name.split("_")[1] == "mid" && (formdata[i].value < 0 || formdata[i].value > 30)) {
+          callError("All mid semester values should be less than 30")
+          cango = false;
+          break;
+        } else if (formdata[i].name.split("_")[1] == "end" && (formdata[i].value < 0 || formdata[i].value > 70)) {
+          callError("All end of semester values should be less than 70")
+          cango = false;
+          break;
+        }
+      };
+      if (cango) {
+        $.ajax({
           url: "/lecturer/grader",
           method: "POST",
           data: data,
-          success: function(res){
-            if(res.done==true){
+          success: function (res) {
+            if (res.done == true) {
               $(".resdiv").append(ress);
-              setTimeout(function(){
+              setTimeout(function () {
                 $(".resdiv").html("");
-              },3000);
-            }else{
+              }, 3000);
+            } else {
 
             }
           }
         })
-        }
-        
-      })
-    </script>
-  </body>
+      }
+
+    })
+  </script>
+</body>
+
 </html>

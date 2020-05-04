@@ -128,33 +128,41 @@ app.get('/results/:year/:sem', (req, res) => {
 	let { year, sem } = req.params;
 	let { studentID } = req.session;
 	let results = []
-	student.findOne({ studentID }).select("_id").then(std => {
+	student.findOne({ studentID }).select("_id firstname surname program").populate("program").then(std => {
 		courseRegister.findOne({ studentID: std._id, year, semester: sem }).select("courses").populate("courses").then(regs => {
-			studentScores.find({studentID,semester:sem,year}).populate("course").then(stdsc=>{
-				let regSet = new Set(regs.courses.map(i=>{
-					return {
-						id: String(i._id),
-						name: i.name
-					};
-				}));
-				console.log(regSet.keys())
-				// stdsc.forEach(i=>{
-				// 	let courseid = String(i.course._id);
-				// 	if(regSet.has(courseid)){
-				// 		// set = true and other details
-				// 		regSet.delete(courseid);
-				// 		results.push({
-				// 			set: true,
-				// 			course: i.course.name,
-				// 			midsem: i.midsem,
-				// 			endsem: i.endsem,
-				// 			total: i.midsem + i.endsem
-				// 		})
-				// 	}
-				// })
-				// res.render('students/resultviewer',{results, unmarked: [...regSet]});
-				// // res.json({results, set: [...regSet]})
-			})
+			if (regs.length>0) {
+				studentScores.find({ studentID, semester: sem, year }).populate("course").then(stdsc => {
+					let regSet = regs.courses.map(i => {
+						return String(i._id);
+					});
+					let regNames = regs.courses.map(i => {
+						return i.name;
+					})
+					stdsc.forEach(i => {
+						let courseid = String(i.course._id);
+						let index = regSet.indexOf(courseid);
+						if (index > -1) {
+							// set = true and other details
+							console.log(regNames);
+							console.log(index)
+							regSet.splice(index, 1);
+							regNames.splice(index, 1);
+							results.push({
+								set: true,
+								course: i.course.name,
+								midsem: i.midsem,
+								endsem: i.endsem,
+								total: i.midsem + i.endsem
+							})
+						}
+					})
+					res.render('students/resultviewer', { avail: true, year, sem, student: { firstname: std.firstname, surname: std.surname, dept: std.program.name }, results, unmarked: regNames });
+					// res.json({results, set: [...regSet]})
+				})
+			} else {
+				res.render('students/resultviewer',{avail: false, year, sem, student: { firstname: std.firstname, surname: std.surname, dept: std.program.name }});
+			}
+
 		})
 	})
 

@@ -27,11 +27,12 @@ app.get('/grader', (req,res)=>{
     programm.findOne({code: program}).then(pdata=>{
         courses.findOne({code: course}).then(cdata=>{
             courseRegister.find({"program": pdata._id, courses: {$in: [cdata._id]}}).populate("studentID").then(data=>{
-                //console.log(data)
+                // console.log(data)
                 if(data.length<1){
-                    move(req,res,{data,courseID: cdata._id})
-                }
-                let c = 0;
+                    move(req,res,{data: false,courseID: cdata._id})
+                }else{
+                    // console.log("herre")
+                    let c = 0;
                 let ress = [];
                 // console.log(data)
                 data.forEach((i,e)=>{
@@ -54,6 +55,8 @@ app.get('/grader', (req,res)=>{
                     // }
                 })
                 
+                
+                }
                 
             })
         })
