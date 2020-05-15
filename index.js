@@ -21,7 +21,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-let dbURI = `mongodb://${process.env.DBUSER}:${process.env.DBPASS}@ds131296.mlab.com:31296/acity`
+let dbURI = process.env.DB_URI;
 if(process.env.Dev == "true"){
   dbURI = `mongodb://127.0.0.1:27017/test`
 }
