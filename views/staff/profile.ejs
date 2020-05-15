@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Profile | Lectuerer</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/carousel.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <%- include('header.ejs') %>
+
+    <main role="main">
+
+     
+
+      <div class="container marketing">
+
+				<!-- Three columns of text below the carousel -->
+        <div class="row mt-5">
+					<div class="col-lg-5">
+						<img src="<%=profilePic%>" width="100%" alt="" class="thumbnail">
+					</div>
+					<div class="col-lg-7">
+						<table class="table">
+							<tr>
+								<td>
+									First name
+								</td>
+								<td>
+									<input type="text" value="<%=staff.firstname%>" class="form-control" readonly>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Surname
+								</td>
+								<td>
+									<input type="text" value="<%=staff.surname%>" class="form-control" readonly>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									staffID
+								</td>
+								<td>
+									<input type="text" value="<%=staff.staffId%>" class="form-control" readonly>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Email
+								</td>
+								<td>
+									<input type="text" value="<%=staff.email%>" class="form-control">
+								</td>
+							</tr>
+            </table>
+            <button class="btn btn-primary">Update profile</button>
+					</div>
+        </div><!-- /.row -->
+
+
+
+      </div><!-- /.container -->
+
+
+    </main>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="/js/vendor/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="/js/vendor/holder.min.js"></script>
+  </body>
+</html>

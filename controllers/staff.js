@@ -5,11 +5,11 @@ const program = require('../models/programModel');
 const course = require('../models/courseModel');
 const student = require('../models/studentModel');
 const lecturer = require('../models/lecturerModel');
+const staff = require('../models/staffModel');
 const semcourse = require('../models/semCoursesModel');
 const {fee, paidfee} = require('../models/feeModel');
 const config = require('../models/configModel');
 const cloudinary = require('cloudinary').v2;
-const multer = require('multer');
 const upload = require('../config/upload');
 const fs = require('fs');
 const nodeXLS = require('node-xlsx');
@@ -341,6 +341,13 @@ app.post('/config', (req,res)=>{
 	let {name, value} = req.body;
 	config.updateOne({metaname: name}, {$set: {metaval: value}},{upsert: true}).then(d=>{
 		res.json(d);
+	})
+})
+
+app.get('/profile', (req,res)=>{
+	staff.findOne({staffId: req.session.staffID}).then(data=>{
+		let profilePic = cloudinary.url(data.profilePic);
+		res.render('staff/profile', {staff: data, profilePic})
 	})
 })
 

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const student = require('../models/studentModel');
 const lecturer = require('../models/lecturerModel');
+const staff = require('../models/staffModel');
 
 router.post('/login', (req,res)=>{
     const { type, userID, userPass } = req.body;
@@ -33,10 +34,15 @@ router.post('/login', (req,res)=>{
         })
     }else{
         // do staff 
-        console.log("staff")
-        req.session.staff = true;
-        req.session.staffID = userID;
-		res.json({done: true, msg: `Welcome Staff memeber`});
+        staff.findOne({staffId: userID, password: userPass}).then(data=>{
+            if(data){
+                req.session.staff = true;
+                req.session.staffID = userID;
+                res.json({done: true, msg: `Welcome ${data.firstname}`});
+            }else{
+                res.json({done: false, msg: `Invalid staff details`});
+            }
+        })
     }
 })
 

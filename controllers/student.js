@@ -130,7 +130,7 @@ app.get('/results/:year/:sem', (req, res) => {
 	let results = []
 	student.findOne({ studentID }).select("_id firstname surname program").populate("program").then(std => {
 		courseRegister.findOne({ studentID: std._id, year, semester: sem }).select("courses").populate("courses").then(regs => {
-			if (regs.length>0) {
+			if (regs && regs.length>0) {
 				studentScores.find({ studentID, semester: sem, year }).populate("course").then(stdsc => {
 					let regSet = regs.courses.map(i => {
 						return String(i._id);
