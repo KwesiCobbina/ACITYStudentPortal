@@ -11,8 +11,7 @@ Below is a template.
 4. Remember to remove all comments in the template file
 ```text
 PORT = 3000 // the port your program will be running on
-DBUSER = // the database username
-DBPASS =    // the database password
+DB_URI = // the URI you copy from MLAB
 Dev = true // true for development and false for production
 SESSION_SECRET = // any string you want to use as secret
 CLOUDINARY_USERNAME = // cloudinary username
